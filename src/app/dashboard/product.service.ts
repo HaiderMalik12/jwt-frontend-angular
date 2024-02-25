@@ -2,19 +2,19 @@ import { inject, Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 import { Product } from "./product";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class ProductService {
-  private productsUrl = "http://localhost:3001/api/product";
   private http = inject(HttpClient);
 
   constructor() {}
 
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
+    return this.http.get<Product[]>(`${environment.api_url}/product`)
       .pipe(
         catchError(this.handleError<Product[]>("getproducts", [])),
       );

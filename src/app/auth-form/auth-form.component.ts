@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Route, Router, RouterLink } from "@angular/router";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-auth-form",
@@ -27,7 +28,7 @@ export class AuthFormComponent {
 
   title = "";
   headerTitle = "";
-  authURL = "http://localhost:3001/api";
+  authURL = environment.api_url;
 
   authForm = this.formBuilder.group({
     email: ["", Validators.required],
