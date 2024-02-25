@@ -27,6 +27,7 @@ export class AuthFormComponent {
 
   title = "";
   headerTitle = "";
+  authURL = "http://localhost:3001/api";
 
   authForm = this.formBuilder.group({
     email: ["", Validators.required],
@@ -35,7 +36,7 @@ export class AuthFormComponent {
 
   onSubmit() {
     if (this.router.url === "/signup") {
-      this.http.post("http://localhost:3001/api/signup", this.authForm.value, {
+      this.http.post(`${this.authURL}/signup`, this.authForm.value, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
         }),
@@ -44,7 +45,7 @@ export class AuthFormComponent {
           this.router.navigate(["signin"]);
         });
     } else {
-      this.http.post("http://localhost:3001/api/signin", this.authForm.value, {
+      this.http.post(`${this.authURL}/signin`, this.authForm.value, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
         }),
