@@ -3,5 +3,6 @@ import { AuthFormComponent } from "./auth-form/auth-form.component";
 
 export const routes: Routes = [
   { path: "signup", component: AuthFormComponent },
+  { path: "login", component: AuthFormComponent },
   { path: "", redirectTo: "/signup", pathMatch: "full" },
 ];
