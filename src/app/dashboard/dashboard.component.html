@@ -1,1 +1,20 @@
+<nav class="bg-indigo-600 py-4">
+  <div
+    class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+  >
+    <div class="flex items-center">
+      <a href="#" class="text-white text-lg font-semibold">E-commerce App</a>
+    </div>
+    <div>
+      <ul class="flex items-center" *ngIf="isLoggedIn">
+        <li>
+          <button class="text-white hover:text-gray-300" (click)="onLogout()">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <app-product-list></app-product-list>
