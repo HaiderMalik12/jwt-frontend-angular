@@ -50,7 +50,6 @@ export class AuthFormComponent {
         }),
       })
         .subscribe((data) => {
-          console.log(data);
           this.router.navigate(["dashboard"]);
         });
     }
