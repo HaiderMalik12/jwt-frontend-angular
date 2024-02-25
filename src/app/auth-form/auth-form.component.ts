@@ -16,9 +16,9 @@ export class AuthFormComponent {
     private http: HttpClient,
     private router: Router,
   ) {
-    if (router.url === "/login") {
-      this.title = "login";
-      this.headerTitle = "Login to your Account";
+    if (router.url === "/signin") {
+      this.title = "Sign in";
+      this.headerTitle = "Sign in to your Account";
     } else {
       this.title = "sign up";
       this.headerTitle = "Create new Account";
@@ -34,16 +34,25 @@ export class AuthFormComponent {
   });
 
   onSubmit() {
-    // Send API REQUEST TO BACKEND SERVER
-    console.log(this.authForm.value);
-    this.http.post("http://localhost:3001/api/signup", this.authForm.value, {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      }),
-    })
-      .subscribe((data) => {
-        console.log(data);
-        this.router.navigate(["login"]);
-      });
+    if (this.router.url === "/signup") {
+      this.http.post("http://localhost:3001/api/signup", this.authForm.value, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+        }),
+      })
+        .subscribe((data) => {
+          this.router.navigate(["signin"]);
+        });
+    } else {
+      this.http.post("http://localhost:3001/api/signin", this.authForm.value, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+        }),
+      })
+        .subscribe((data) => {
+          console.log(data);
+          this.router.navigate(["dashboard"]);
+        });
+    }
   }
 }
