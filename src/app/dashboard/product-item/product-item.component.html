@@ -5,16 +5,15 @@
     alt="Product Image"
   />
   <div class="p-4">
-    <h3 class="text-gray-900 font-semibold text-lg">Product Name</h3>
+    <h3 class="text-gray-900 font-semibold text-lg">{{ product?.title }}</h3>
     <p class="text-gray-600 mt-1">
-      Product Description Lorem ipsum dolor sit amet consectetur adipisicing
-      elit.
+      {{ product?.description }}
     </p>
     <div class="mt-2 flex items-center justify-between">
-      <span class="text-gray-900 font-bold">$24.99</span>
+      <span class="text-gray-900 font-bold">${{ product?.price }}</span>
       <div class="flex items-center">
         <span class="text-gray-600 mr-2">Qty:</span>
-        <span class="text-gray-900 font-bold">1</span>
+        <span class="text-gray-900 font-bold">{{ product?.qty }}</span>
         <!-- Display quantity as a static value -->
       </div>
     </div>

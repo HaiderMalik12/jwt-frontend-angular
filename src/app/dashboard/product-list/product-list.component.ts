@@ -3,11 +3,12 @@ import { ProductItemComponent } from "../product-item/product-item.component";
 
 import { Product } from "../product";
 import { ProductService } from "../product.service";
+import { NgFor } from "@angular/common";
 
 @Component({
   selector: "app-product-list",
   standalone: true,
-  imports: [ProductItemComponent],
+  imports: [NgFor, ProductItemComponent],
   templateUrl: "./product-list.component.html",
   styleUrl: "./product-list.component.css",
 })
@@ -17,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
-      console.log(data);
+      this.products = data;
     });
   }
 }
