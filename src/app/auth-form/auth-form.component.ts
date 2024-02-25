@@ -44,11 +44,7 @@ export class AuthFormComponent {
 
   onSubmit() {
     if (this.router.url === "/signup") {
-      this.http.post(`${this.apiURL}/signup`, this.authForm.value, {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-        }),
-      })
+      this.http.post(`${this.apiURL}/signup`, this.authForm.value)
         .subscribe((data) => {
           this.router.navigate(["signin"]);
         });
@@ -56,11 +52,6 @@ export class AuthFormComponent {
       this.http.post<LoginResponse>(
         `${this.apiURL}/signin`,
         this.authForm.value,
-        {
-          headers: new HttpHeaders({
-            "Content-Type": "application/json",
-          }),
-        },
       )
         .subscribe((data: LoginResponse) => {
           this.jwtService.seToken(data.token);
