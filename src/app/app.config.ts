@@ -7,7 +7,7 @@ import {
 } from "@angular/common/http";
 
 import { routes } from "./app.routes";
-import { JwtTokenInterceptor } from "./core/services/jwt-token.interceptor";
+import { JwtTokenInterceptor } from "./core/jwt-token.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
