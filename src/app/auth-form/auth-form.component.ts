@@ -1,8 +1,14 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Route, Router, RouterLink } from "@angular/router";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
+import { JwtService } from "../core/services";
+
+interface LoginResponse {
+  token: string;
+  // other properties if any
+}
 
 @Component({
   selector: "app-auth-form",
@@ -14,7 +20,6 @@ import { environment } from "../../environments/environment";
 export class AuthFormComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private router: Router,
   ) {
     if (router.url === "/signin") {
@@ -25,10 +30,12 @@ export class AuthFormComponent {
       this.headerTitle = "Create new Account";
     }
   }
+  private http = inject(HttpClient);
+  private jwtService = inject(JwtService);
 
   title = "";
   headerTitle = "";
-  authURL = environment.api_url;
+  apiURL = environment.api_url;
 
   authForm = this.formBuilder.group({
     email: ["", Validators.required],
@@ -37,7 +44,7 @@ export class AuthFormComponent {
 
   onSubmit() {
     if (this.router.url === "/signup") {
-      this.http.post(`${this.authURL}/signup`, this.authForm.value, {
+      this.http.post(`${this.apiURL}/signup`, this.authForm.value, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
         }),
@@ -46,12 +53,17 @@ export class AuthFormComponent {
           this.router.navigate(["signin"]);
         });
     } else {
-      this.http.post(`${this.authURL}/signin`, this.authForm.value, {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-        }),
-      })
-        .subscribe((data) => {
+      this.http.post<LoginResponse>(
+        `${this.apiURL}/signin`,
+        this.authForm.value,
+        {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+          }),
+        },
+      )
+        .subscribe((data: LoginResponse) => {
+          this.jwtService.seToken(data.token);
           this.router.navigate(["dashboard"]);
         });
     }
