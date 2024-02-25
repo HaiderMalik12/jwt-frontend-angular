@@ -8,7 +8,7 @@ import {
 
 import { routes } from "./app.routes";
 import { TokenInterceptorService } from "./core/services";
-import { JwtTokenInterceptor } from "./core/jwt-token.interceptor";
+import { JwtTokenInterceptor } from "./core/services/jwt-token.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
