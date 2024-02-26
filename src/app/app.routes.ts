@@ -15,7 +15,12 @@ export const routes: Routes = [
   {
     path: "add-product",
     component: ProductFormComponent,
-    canActivateChild: [authGuard],
+    canActivate: [authGuard],
+  },
+  {
+    path: "update-product/:id",
+    component: ProductFormComponent,
+    canActivate: [authGuard],
   },
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
 ];
