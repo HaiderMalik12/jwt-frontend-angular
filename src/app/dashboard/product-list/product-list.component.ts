@@ -21,4 +21,9 @@ export class ProductListComponent implements OnInit {
       this.products = data;
     });
   }
+
+  onDeleteProduct(id: string) {
+    // Remove the deleted product from the products array
+    this.products = this.products.filter((product) => product.id !== id);
+  }
 }

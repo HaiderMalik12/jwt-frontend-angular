@@ -5,6 +5,7 @@
     <app-product-item
       *ngFor="let p of products"
       [product]="p"
+      (deleteProductEvent)="onDeleteProduct($event)"
     ></app-product-item>
   </div>
 </div>

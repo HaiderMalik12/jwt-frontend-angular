@@ -1,4 +1,4 @@
-import { Component, inject, Input } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { Product } from "../product";
 import { Router, RouterLink } from "@angular/router";
 import { NgIf } from "@angular/common";
@@ -16,6 +16,8 @@ export class ProductItemComponent {
   product: Product | undefined;
   private router = inject(Router);
   private productService = inject(ProductService);
+  @Output()
+  deleteProductEvent = new EventEmitter<string>();
 
   editProductHanlder(id: string) {
     this.router.navigate(["edit", id]);
@@ -24,9 +26,7 @@ export class ProductItemComponent {
   deleteProduct(id: string) {
     this.productService.deleteProduct(id)
       .subscribe((data) => {
-        // this.products = this.products.filter((p) => p.id !== id);
-        console.log("product deleted");
-        console.log(data);
+        this.deleteProductEvent.emit(id);
       });
   }
 }
