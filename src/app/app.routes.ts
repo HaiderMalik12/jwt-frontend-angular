@@ -13,12 +13,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: "add-product",
+    path: "add",
     component: ProductFormComponent,
     canActivate: [authGuard],
   },
   {
-    path: "update-product/:id",
+    path: "edit/:id",
     component: ProductFormComponent,
     canActivate: [authGuard],
   },

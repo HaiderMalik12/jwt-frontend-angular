@@ -19,7 +19,13 @@
     </div>
     <!-- Edit and Delete Buttons -->
     <div class="mt-4 flex items-center justify-between">
-      <button class="text-indigo-600 hover:text-indigo-900">Edit</button>
+      <button
+        *ngIf="product"
+        class="text-indigo-600 hover:text-indigo-900"
+        (click)="editProductHanlder(product.id)"
+      >
+        Edit
+      </button>
       <button class="text-red-600 hover:text-red-900">Delete</button>
     </div>
     <!-- End of Edit and Delete Buttons -->

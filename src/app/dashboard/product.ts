@@ -6,5 +6,5 @@ export interface ProductInput {
 }
 
 export interface Product extends ProductInput {
-  _id: string;
+  id: string;
 }
