@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
-import { Product } from "./product";
+import { Product, ProductInput } from "./product";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 
@@ -17,6 +17,12 @@ export class ProductService {
     return this.http.get<Product[]>(`${environment.api_url}/product`)
       .pipe(
         catchError(this.handleError<Product[]>("getproducts", [])),
+      );
+  }
+  createProduct(product: ProductInput): Observable<Product> {
+    return this.http.post<Product>(`${environment.api_url}/product`, product)
+      .pipe(
+        catchError(this.handleError<Product>("createProduct")),
       );
   }
   /**
