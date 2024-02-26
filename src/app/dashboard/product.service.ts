@@ -41,6 +41,13 @@ export class ProductService {
         catchError(this.handleError<Product>("updateProduct")),
       );
   }
+
+  deleteProduct(id: string): Observable<Product> {
+    return this.http.delete<Product>(`${environment.api_url}/product/${id}`)
+      .pipe(
+        catchError(this.handleError<Product>("deleteproduct")),
+      );
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.
