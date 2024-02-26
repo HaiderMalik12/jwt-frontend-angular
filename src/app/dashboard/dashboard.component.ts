@@ -2,12 +2,12 @@ import { Component, inject, OnInit } from "@angular/core";
 import { ProductListComponent } from "./product-list/product-list.component";
 import { NgClass, NgIf } from "@angular/common";
 import { JwtService } from "../core/services";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-dashboard",
   standalone: true,
-  imports: [ProductListComponent, NgClass, NgIf],
+  imports: [ProductListComponent, NgClass, NgIf, RouterLink],
   templateUrl: "./dashboard.component.html",
   styleUrl: "./dashboard.component.css",
 })

@@ -6,7 +6,12 @@
       <a class="text-white text-lg font-semibold">E-commerce App</a>
     </div>
     <div>
-      <ul class="flex items-center" *ngIf="isLoggedIn">
+      <ul class="flex items-center gap-x-3" *ngIf="isLoggedIn">
+        <li>
+          <a class="text-white hover:text-gray-300" routerLink="/add-product">
+            Add Product
+          </a>
+        </li>
         <li>
           <button class="text-white hover:text-gray-300" (click)="onLogout()">
             Logout
