@@ -19,10 +19,26 @@ export class ProductService {
         catchError(this.handleError<Product[]>("getproducts", [])),
       );
   }
+  getProduct(id: string): Observable<Product> {
+    return this.http.get<Product>(`${environment.api_url}/product/${id}`)
+      .pipe(
+        catchError(this.handleError<Product>("getproduct")),
+      );
+  }
   createProduct(product: ProductInput): Observable<Product> {
     return this.http.post<Product>(`${environment.api_url}/product`, product)
       .pipe(
         catchError(this.handleError<Product>("createProduct")),
+      );
+  }
+
+  editProduct(product: Partial<ProductInput>, id: string): Observable<Product> {
+    return this.http.put<Product>(
+      `${environment.api_url}/product/${id}`,
+      product,
+    )
+      .pipe(
+        catchError(this.handleError<Product>("updateProduct")),
       );
   }
   /**
