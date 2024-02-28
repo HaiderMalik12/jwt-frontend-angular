@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { ProductService } from "../product.service";
 import { Product, ProductInput } from "../product";
 import { catchError, Observable, of, switchMap } from "rxjs";
+import { SocketioService } from "../../core/socketio.service";
 
 @Component({
   selector: "app-product-form",
@@ -28,6 +29,7 @@ export class ProductFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
+    private socketIOService: SocketioService,
   ) {}
 
   ngOnInit(): void {

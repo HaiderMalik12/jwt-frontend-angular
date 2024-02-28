@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 import { environment } from "../environments/environment";
 
 @Component({
@@ -12,7 +12,7 @@ import { environment } from "../environments/environment";
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const socket = io(`${environment.socket_endpoint}`);
+    // const socket = io(`${environment.socket_endpoint}`);
   }
 
   title = "E-commerce App";
