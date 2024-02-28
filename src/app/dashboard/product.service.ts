@@ -33,6 +33,7 @@ export class ProductService {
   }
 
   editProduct(product: Partial<ProductInput>, id: string): Observable<Product> {
+    console.log(product, id);
     return this.http.put<Product>(
       `${environment.api_url}/product/${id}`,
       product,

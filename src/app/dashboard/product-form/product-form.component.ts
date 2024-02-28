@@ -47,6 +47,7 @@ export class ProductFormComponent implements OnInit {
       }),
     ).subscribe((data: Product | null) => {
       if (data) {
+        this.product = data;
         this.productForm.patchValue(data);
       }
     });
@@ -54,13 +55,15 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     //edit the product
+    debugger;
     if (this.product) {
       this.productService.editProduct(
         (this.productForm.value) as ProductInput,
         this.product.id,
       )
         .subscribe(
-          () => {
+          (data) => {
+            console.log(data);
             this.router.navigate(["/dashboard"]);
           },
         );
