@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { io } from "socket.io-client";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: "app-root",
@@ -9,7 +11,9 @@ import { RouterOutlet } from "@angular/router";
   styleUrl: "./app.component.css",
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    const socket = io(`${environment.socket_endpoint}`);
+  }
   ngOnInit(): void {
     // listen to event from server
   }
