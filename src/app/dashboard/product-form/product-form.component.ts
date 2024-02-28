@@ -57,7 +57,6 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     //edit the product
-    debugger;
     if (this.product) {
       this.productService.editProduct(
         (this.productForm.value) as ProductInput,
@@ -75,7 +74,8 @@ export class ProductFormComponent implements OnInit {
         (this.productForm.value) as ProductInput,
       )
         .subscribe(
-          () => {
+          (data) => {
+            this.socketIOService.emit("product:add", data);
             this.router.navigate(["/dashboard"]);
           },
         );

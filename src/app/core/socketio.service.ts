@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { DefaultEventsMap } from "@socket.io/component-emitter";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
@@ -9,7 +8,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class SocketioService {
-  private socket: any;
+  private socket: Socket;
 
   constructor() {
     this.socket = io(`${environment.socket_endpoint}`);
