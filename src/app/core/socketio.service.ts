@@ -17,8 +17,6 @@ export class SocketioService {
     this.socket = io(`${environment.socket_endpoint}`);
 
     this.socket.on("product:created", (product) => {
-      console.log("new product created");
-      console.log(product);
       this.productCreatedSource.next(product);
     });
   }
