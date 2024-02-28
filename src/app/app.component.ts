@@ -11,11 +11,8 @@ import { environment } from "../environments/environment";
   styleUrl: "./app.component.css",
 })
 export class AppComponent implements OnInit {
-  constructor() {
-    const socket = io(`${environment.socket_endpoint}`);
-  }
   ngOnInit(): void {
-    // listen to event from server
+    const socket = io(`${environment.socket_endpoint}`);
   }
 
   title = "E-commerce App";
