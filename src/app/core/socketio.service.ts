@@ -12,6 +12,11 @@ export class SocketioService {
 
   constructor() {
     this.socket = io(`${environment.socket_endpoint}`);
+
+    this.socket.on("product:created", (product) => {
+      console.log("new product created");
+      console.log(product);
+    });
   }
 
   listen(eventName: string) {
