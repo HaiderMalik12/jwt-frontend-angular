@@ -1,21 +1,25 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 import { io, Socket } from "socket.io-client";
 
 import { environment } from "../../environments/environment";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { ProductService } from "../dashboard/product.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class SocketioService {
   private socket: Socket;
+  private productCreatedSource = new Subject<any>();
+  productCreated$ = this.productCreatedSource.asObservable();
 
-  constructor() {
+  constructor(private productService: ProductService) {
     this.socket = io(`${environment.socket_endpoint}`);
 
     this.socket.on("product:created", (product) => {
       console.log("new product created");
       console.log(product);
+      this.productCreatedSource.next(product);
     });
   }
 
